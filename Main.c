@@ -1,9 +1,9 @@
 #include"Cozi.h"
 int main()
 {
-    int k=5;
-    CoadaLista*q;
-    q=umplerelista(k);
-    stergerelista(&q);
-    afisareLista(q);
+    int k;
+    scanf("%d",&k);
+    CoadaVector*q;
+    q=umplerevector(k);
+    afisareVector(q);
 }

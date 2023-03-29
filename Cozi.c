@@ -71,4 +71,69 @@ void stergerelista(CoadaLista**q)
     (*q)=NULL;
     return;
 }
-
+CoadaVector* crearevector(int k)
+{
+    CoadaVector* v=(CoadaVector*)malloc(sizeof(CoadaVector));
+    v->fin=-1;
+    v->capacity=k;
+    v->vector=(int*)malloc((v->capacity)*sizeof(int));
+    return v;
+}
+int isFull(CoadaVector*v)
+{
+    return v->fin==v->capacity-1;
+}
+int isEmpty(CoadaVector*v)
+{
+    return v->fin==-1;
+}
+void resize(CoadaVector*v)
+{
+    v->capacity*=2;
+    v->vector=(int*)realloc(v->vector,(v->capacity)*sizeof(int));
+}
+void pushvector(CoadaVector*v,int k)
+{
+    if(isFull(v))
+        resize(v);
+    v->vector[++(v->fin)]=k;
+    return;
+}
+int popvector(CoadaVector*v)
+{
+    int n=v->vector[0];
+    for(int i=0;i<v->fin;i++)
+        v->vector[i]=v->vector[i+1];
+    v->fin--;
+    return n;
+}
+CoadaVector* umplerevector(int k)
+{
+    CoadaVector*v=crearevector(k);
+    int n;
+    for(int i=0;i<k;i++)
+    {
+        scanf("%d",&n);
+        pushvector(v,n);
+    }
+    return v;
+}
+void afisareVector(CoadaVector*v)
+{
+    if(v==NULL)
+    {
+        printf("coada goala");
+        return;
+    }
+    while(!isEmpty(v))
+    {
+        printf("%d ",popvector(v));
+    }
+    return;
+}
+void stergevector(CoadaVector**v)
+{
+    free((*v)->vector);
+    free(*v);
+    (*v)=NULL;
+}
