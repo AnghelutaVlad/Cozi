@@ -6,6 +6,6 @@ int main()
     CoadaVector*q;
     q=umplerevector(k);
     scanf("%d",&a);
-    pushVector(q,a);
+    pushvector(q,a);
     afisareVector(q);
 }
